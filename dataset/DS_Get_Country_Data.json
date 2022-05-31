@@ -1,0 +1,12 @@
+{
+	"name": "DS_Get_Country_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StageDB_Conn",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
