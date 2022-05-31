@@ -1,0 +1,16 @@
+{
+	"name": "DS_Target_Database",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Target_Server",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Dim_CUSTOMER"
+		}
+	}
+}
