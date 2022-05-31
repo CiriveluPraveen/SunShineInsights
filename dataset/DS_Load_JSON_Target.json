@@ -1,0 +1,16 @@
+{
+	"name": "DS_Load_JSON_Target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Target_Server",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "JSON_Data"
+		}
+	}
+}
