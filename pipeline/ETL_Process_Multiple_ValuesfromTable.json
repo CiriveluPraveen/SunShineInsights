@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "DS_Get_Country_Data",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -44,7 +45,7 @@
 						"value": "@activity('Get List of Country from table').output.value",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Copy data from souce to Target",
