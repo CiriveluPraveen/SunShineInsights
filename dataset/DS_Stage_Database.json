@@ -1,0 +1,12 @@
+{
+	"name": "DS_Stage_Database",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StageDB_Conn",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

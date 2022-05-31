@@ -1,0 +1,25 @@
+{
+	"name": "DS_Azure_Blob_Container",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Azure_Blob_Container",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": {
+					"value": "@dataset().FolderName",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
