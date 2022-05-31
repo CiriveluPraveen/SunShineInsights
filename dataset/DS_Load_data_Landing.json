@@ -1,0 +1,23 @@
+{
+	"name": "DS_Load_data_Landing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StageDB_Conn",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
