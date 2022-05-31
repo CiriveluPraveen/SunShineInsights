@@ -1,0 +1,18 @@
+{
+	"name": "Customer_JSON_Container",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Get_File_Source_Folder",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "CUSTOMER_JSON_DATA"
+			}
+		},
+		"schema": {}
+	}
+}
