@@ -1,0 +1,22 @@
+{
+	"name": "DS_Archive_Path",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Archive_Folder",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "archive"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

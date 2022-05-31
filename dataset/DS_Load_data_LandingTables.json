@@ -1,0 +1,16 @@
+{
+	"name": "DS_Load_data_LandingTables",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StageDB_Conn",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Emp"
+		}
+	}
+}
