@@ -1,6 +1,66 @@
 {
 	"name": "ETL_Switch_Pipeline",
 	"properties": {
+		"activities": [
+			{
+				"name": "Proess File based on condition",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.FileName",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "Product",
+							"activities": [
+								{
+									"name": "Product",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "Customer",
+							"activities": [
+								{
+									"name": "Customer",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "Sales",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
