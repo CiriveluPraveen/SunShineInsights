@@ -1,0 +1,22 @@
+{
+	"name": "DS_SourceFolder_Path",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Get_File_Source_Folder",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "sourcefiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
