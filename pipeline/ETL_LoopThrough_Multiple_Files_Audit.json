@@ -30,6 +30,152 @@
 						"type": "DelimitedTextReadSettings"
 					}
 				}
+			},
+			{
+				"name": "Loopthrough_Multiple_Sourcefiles",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get FileNames",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get FileNames').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy Data into Sql Tables",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_Process_Multiple_files",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Source_Files_Process",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						},
+						{
+							"name": "Stored procedure",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Copy Data into Sql Tables",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[Usp_Populate_Audit_Log]",
+								"storedProcedureParameters": {
+									"ErrorMessage": {
+										"value": "",
+										"type": "String"
+									},
+									"Pipelinename": {
+										"value": "",
+										"type": "String"
+									},
+									"Pipelinestarttime": {
+										"value": "",
+										"type": "DateTime"
+									},
+									"Rowscopied": {
+										"value": "",
+										"type": "Int32"
+									},
+									"Rowsread": {
+										"value": "",
+										"type": "Int32"
+									},
+									"source": {
+										"value": "",
+										"type": "String"
+									},
+									"Target": {
+										"value": "",
+										"type": "String"
+									},
+									"Throughput": {
+										"value": "",
+										"type": "Decimal"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_Azure_StageDB_Conn",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
 			}
 		],
 		"annotations": []
