@@ -76,7 +76,9 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
@@ -140,31 +142,52 @@
 										"type": "String"
 									},
 									"Pipelinename": {
-										"value": "",
+										"value": {
+											"value": "@pipeline().Pipeline",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"Pipelinestarttime": {
-										"value": "",
+										"value": {
+											"value": "@pipeline().TriggerTime",
+											"type": "Expression"
+										},
 										"type": "DateTime"
 									},
 									"Rowscopied": {
-										"value": "",
+										"value": {
+											"value": "@activity('Copy Data into Sql Tables').output.rowsCopied",
+											"type": "Expression"
+										},
 										"type": "Int32"
 									},
 									"Rowsread": {
-										"value": "",
+										"value": {
+											"value": "@activity('Copy Data into Sql Tables').output.rowsRead",
+											"type": "Expression"
+										},
 										"type": "Int32"
 									},
 									"source": {
-										"value": "",
+										"value": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"Target": {
-										"value": "",
+										"value": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
 										"type": "String"
 									},
 									"Throughput": {
-										"value": "",
+										"value": {
+											"value": "@activity('Copy Data into Sql Tables').output.throughput",
+											"type": "Expression"
+										},
 										"type": "Decimal"
 									}
 								}
