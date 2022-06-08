@@ -1,0 +1,29 @@
+{
+	"name": "Excel1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Input_Folder",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SheetName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": {
+				"value": "@dataset().SheetName",
+				"type": "Expression"
+			},
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Employee_Details.xlsx",
+				"container": "input"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
